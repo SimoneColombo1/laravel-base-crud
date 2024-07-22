@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AnimalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pages.home');
 });
+
+Route::get('admin/Animals',[AnimalController::class,'index'])->name('admin.Animals.index');
+
+Route::get('admin/Animals/{animal}',[AnimalController::class,'show'])->name('admin.Animals.show');
