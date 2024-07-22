@@ -37,7 +37,7 @@ class AnimalController extends Controller
      */
     public function show(Animals $animal)
     {
-        dd($animal);
+
         return view('admin.Animals.show', compact("animal"));
     }
 
