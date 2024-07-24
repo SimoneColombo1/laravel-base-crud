@@ -49,17 +49,21 @@ class AnimalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Animals $animal)
     {
-        //===
+        return view('admin.Animals.edit',compact("animal"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Animals $animal)
     {
-        //
+        $data=$request->all();
+        $animal->update($data);
+
+        return redirect()->route('admin.Animals.show',$animal);
+
     }
 
     /**
