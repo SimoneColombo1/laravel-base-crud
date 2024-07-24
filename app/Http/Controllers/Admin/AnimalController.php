@@ -21,7 +21,7 @@ class AnimalController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.Animals.create');
     }
 
     /**
@@ -29,7 +29,12 @@ class AnimalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data= $request->all();
+
+        $newAnimal = Animals::create($data);
+
+        return redirect()-> route('admin.Animals.show',$newAnimal);
+
     }
 
     /**
@@ -46,7 +51,7 @@ class AnimalController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        //===
     }
 
     /**

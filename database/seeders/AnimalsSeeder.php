@@ -20,8 +20,12 @@ class AnimalsSeeder extends Seeder
             $animals-> DataArrivo= $faker ->words(1,true);
             $animals-> Peso = $faker -> randomDigit();
             $animals-> Sesso =$faker->words(1,true);
-            $animals-> Habitat =$faker->words(1,true);
+            $animals-> habitat =$faker->words(1,true);
             $animals-> save();
+        }
+        foreach ($animals as $animal) {
+            $newAnimal= new Animals($animals);
+            $newAnimal->save();
         }
     }
 }
