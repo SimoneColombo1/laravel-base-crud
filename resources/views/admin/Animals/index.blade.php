@@ -4,6 +4,10 @@
 
 @section('main-content')
 <section class="container">
+
+   <h1>LISTA ANIMALI</h1>
+
+    <a href="{{route('admin.Animals.create')}}" class="btn btn-sm btn-success mt-4 mb-4">Aggiungi un nuovo animale</a>
 <div class="col-12 text-center pl-3">
   <table class="table table-dark table-striped">
    <thead>
