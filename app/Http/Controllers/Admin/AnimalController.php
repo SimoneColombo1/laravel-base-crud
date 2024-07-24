@@ -72,6 +72,6 @@ class AnimalController extends Controller
     public function destroy(Animals $animal)
     {
          $animal->delete();
-         return redirect()-> route ('admin.Animals.show',$animal) ;
+         return redirect()-> route ('admin.Animals.index') ;
     }
 }

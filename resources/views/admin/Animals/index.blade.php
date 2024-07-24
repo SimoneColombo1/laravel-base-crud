@@ -42,11 +42,11 @@
                 <td class="table-danger">{{$animal->Sesso}}</td>
                 <td class="table-warning">{{$animal->habitat}}</td>
                  <td><a href="{{route('admin.Animals.show',$animal)}}" class="btn btn-primary btn-small">INFO</a>
-                 <a href="{{route('admin.Animals.edit',$animal)}}" class="btn btn-primary btn-small">EDIT</a>
+                 <a href="{{route('admin.Animals.edit',$animal)}}" class="btn btn-warning btn-small">EDIT</a>
                 <form action="{{route('admin.Animals.destroy',$animal)}} " method="POST" class="d-inline-block">
                 @method("DELETE")
                 @csrf
-                <button type="submit" class="btn btn-small btn-warning">DELETE</button>
+                <button type="submit" class="btn btn-small btn-danger">DELETE</button>
                 </form>
                 </td>
          </tr>
