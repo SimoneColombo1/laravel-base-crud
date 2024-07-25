@@ -1,18 +1,38 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Models\Animals;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreAnimalRequest;
 use Illuminate\Http\Request;
 
 class AnimalController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    private $validationRules = [
+        'Nome' => 'min:4',
+        'Specie' => 'min:4',
+        'Eta' => 'min:1',
+        'DataArrivo' => 'min:4',
+        'Peso' =>  'min:1',
+        'Sesso' => 'min:4',
+        'habitat' =>  'min:4',
+    ];
+
+    private $validationMessages = [
+        'Nome.min' => 'Devi inserire almeno 4 caratteri',
+
+        'Specie.min' => 'Devi inserire almeno 4 caratteri',
+        'Eta.min' => 'Deve essere maggiore di 1',
+        'DataArrivo.min' => 'Devi inserire almeno 4 caratteri',
+        'Peso.min' => 'Deve essere maggiore di 1',
+
+        'Sesso.min' => 'Devi inserire almeno 4 caratteri',
+        'habitat.min' => 'Devi inserire almeno 4 caratteri',
+    ];
     public function index()
     {
-        $animals= Animals::all();
+        $animals = Animals::all();
         return view('admin.Animals.index', compact("animals"));
     }
 
@@ -29,12 +49,11 @@ class AnimalController extends Controller
      */
     public function store(Request $request)
     {
-        $data= $request->all();
+        $data = $request->validate($this->validationRules, $this->validationMessages);
 
         $newAnimal = Animals::create($data);
 
-        return redirect()-> route('admin.Animals.show',$newAnimal);
-
+        return redirect()->route('admin.Animals.show', $newAnimal);
     }
 
     /**
@@ -51,7 +70,7 @@ class AnimalController extends Controller
      */
     public function edit(Animals $animal)
     {
-        return view('admin.Animals.edit',compact("animal"));
+        return view('admin.Animals.edit', compact("animal"));
     }
 
     /**
@@ -59,11 +78,11 @@ class AnimalController extends Controller
      */
     public function update(Request $request, Animals $animal)
     {
-        $data=$request->all();
+        $data =
+            $request->validate($this->validationRules, $this->validationMessages);;
         $animal->update($data);
 
-        return redirect()->route('admin.Animals.show',$animal);
-
+        return redirect()->route('admin.Animals.show', $animal);
     }
 
     /**
@@ -71,7 +90,7 @@ class AnimalController extends Controller
      */
     public function destroy(Animals $animal)
     {
-         $animal->delete();
-         return redirect()-> route ('admin.Animals.index') ;
+        $animal->delete();
+        return redirect()->route('admin.Animals.index');
     }
 }
